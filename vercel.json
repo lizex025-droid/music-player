@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/favicon.ico",
+      "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
+    },
+    {
+      "source": "/favicon.png",
+      "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
+    },
+    {
       "source": "/apple-touch-icon.png",
       "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
     },
