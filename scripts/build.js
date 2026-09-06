@@ -1,5 +1,6 @@
 const fs = require('fs');
 require('./build-drag-reorder.js');
+require('./build-multi-select.js');
 
 const iconFiles = [
   'apple-touch-icon.png',
@@ -12,4 +13,4 @@ for (const file of iconFiles) {
   fs.copyFileSync(file, `dist/${file}`);
 }
 
-console.log('Copied resized iOS icons to dist');
+console.log('Built drag reorder + multi-select and copied resized iOS icons to dist');
