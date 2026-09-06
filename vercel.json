@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/apple-touch-icon.png",
+      "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
+    },
+    {
+      "source": "/apple-touch-icon-precomposed.png",
+      "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
+    },
+    {
+      "source": "/apple-touch-icon-180x180.png",
+      "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
+    },
+    {
+      "source": "/apple-touch-icon-180x180-precomposed.png",
+      "destination": "https://cdn-icons-png.flaticon.com/512/174/174872.png"
+    }
+  ]
+}
