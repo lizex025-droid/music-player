@@ -1,4 +1,4 @@
-const CACHE_NAME = 'music-player-pwa-v1';
+const CACHE_NAME = 'music-player-pwa-v4';
 const CORE_ASSETS = [
   '/',
   '/index.html',
