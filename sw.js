@@ -1,4 +1,4 @@
-const CACHE_NAME = 'music-player-pwa-v5';
+const CACHE_NAME = 'music-player-pwa-v6';
 
 self.addEventListener('install', event => {
   event.waitUntil(self.skipWaiting());
