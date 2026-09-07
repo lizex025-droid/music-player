@@ -25,13 +25,14 @@ for (const size of [192, 512]) {
 
 let html = fs.readFileSync('dist/index.html', 'utf8');
 
-if (!html.includes('PWA_NATIVE_INSTALL_V1')) {
+if (!html.includes('PWA_NATIVE_INSTALL_V2')) {
   html = html.replace('</head>', `
-<!-- PWA_NATIVE_INSTALL_V1: leave Chromium's native install UI enabled -->
-<link rel="manifest" href="/manifest.webmanifest?v=4">
+<!-- PWA_NATIVE_INSTALL_V2: Chromium controls the native address-bar install UI -->
+<link rel="manifest" href="/manifest.webmanifest?v=5">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
 <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
 <meta name="application-name" content="Music Player">
+<meta name="theme-color" content="#121212">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Music Player">
 <meta name="msapplication-TileColor" content="#121212">
@@ -39,12 +40,13 @@ if (!html.includes('PWA_NATIVE_INSTALL_V1')) {
 
   html = html.replace('</body>', `<script>
 (() => {
-  // Do not intercept beforeinstallprompt. Chrome/Edge can therefore show
-  // their own native install icon in the address bar when the app is eligible.
+  // Intentionally do not call preventDefault() on beforeinstallprompt.
+  // This leaves Chrome/Edge free to show their own native install badge.
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', async () => {
       try {
-        await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        const reg = await navigator.serviceWorker.register('/sw.js?v=5', { scope: '/' });
+        if (reg.waiting) reg.waiting.postMessage?.({ type: 'SKIP_WAITING' });
       } catch (err) {
         console.warn('Service worker registration failed', err);
       }
@@ -56,4 +58,4 @@ if (!html.includes('PWA_NATIVE_INSTALL_V1')) {
 }
 
 fs.writeFileSync('dist/index.html', html);
-console.log('Built drag reorder + multi-select + native desktop PWA install support');
+console.log('Built drag reorder + multi-select + hardened native desktop PWA support');
